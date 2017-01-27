@@ -3,6 +3,7 @@
 
 import os
 import subprocess
+import re
 
 
 def create_directories(directory_names):
@@ -12,15 +13,23 @@ def create_directories(directory_names):
             os.makedirs(directory)
 
 
-def create_generic_route(route_name, renderer=None, permission=None):
-    """Return text for a route."""
-    pass
+def grab_section_text(section_name, filename):
+    """Return the text from a section.
+
+    Sections are marked begining with $$section_name$$ and ending with
+    $$-$$.  This function returns all text in-between these markers.
+    """
+    with open(filename, 'r') as f:
+        text = f.read()
+    
+    x = re.match('\$\$generic-route\$\$\\n(.+?)(?=\$\$-\$\$)', text, re.DOTALL)
+    return x.group(1)
 
 
 def run_pyramid_scaffold(appname, sqlalchemy=True):
     """Create normal pyramid scaffold."""
     subprocess.Popen(['pip', 'install', '-U', 'pip', 'setuptools'])
-    subprocess.Popen(['pip', 'install', 'pyramid'])
+    subprocess.Popen(['pip', 'install', 'pyramid', 'pyramid_ipython'])
 
     if sqlalchemy:
         subprocess.Popen(['pip', 'install', 'sqlalchemy'])
@@ -29,3 +38,8 @@ def run_pyramid_scaffold(appname, sqlalchemy=True):
         alchemy = ''
 
     subprocess.Popen(['pcreate', '-s', alchemy, appname])
+
+
+def create_generic_route(route_name, renderer=None, permission=None):
+    """Return text for a route."""
+    pass
