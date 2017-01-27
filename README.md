@@ -3,6 +3,9 @@ Quick Pyramid is a tool in development for creating web applications in
 Pyramid even faster than it already is.  This project is in its infancy, 
 and features are still being decided.
 
+I'm basically piecing together old projects in order to create a pyramid 
+automation tool.
+
 ### Planned Features
 - Automatic route creation
 - Built-in templates
