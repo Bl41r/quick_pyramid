@@ -1,0 +1,54 @@
+$$login-template$$
+{% extends "layout.jinja2" %}
+{% block body %}
+<div class="login-page">
+    {% if error %}
+        <div class="alert">{{ error }}</div>
+    {% endif %}
+
+    <form action="" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}"/>
+
+        <div>
+            <span>Username</span>
+            <input type="text" placeholder="Username" name="username">
+
+            <span>Password</span>
+            <input type="password" placeholder="Password" name="password">
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+</div>
+{% endblock %}
+$$-$$
+
+$$layout-template$$
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+    </head>
+
+    <body>
+        <div class="container" id="content">
+            {% block body %}{% endblock %}
+        </div>
+
+    <footer>
+    </footer>
+
+    </body>
+
+</html>
+$$-$$
+
+$$404-layout$$
+{% extends "layout.jinja2" %}
+{% block content %}
+<div class="content">
+    404 - Page Not Found
+</div>
+{% endblock content %}
+$$-$$

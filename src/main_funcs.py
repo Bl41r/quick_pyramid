@@ -11,11 +11,14 @@ def create_directories(directory_names):
             os.makedirs(directory)
 
 
-def create_route(route_name, renderer=None):
+def create_generic_route(route_name, renderer=None, permission=None):
     """Return text for a route."""
-
+    if permission:
+        permission = ", permission='" + permission + "'"
     template = renderer
     if renderer:
         renderer = ", renderer='" + template + "'"
-    return '@view_config(route_name="' + route_name + '")\n' + 'def ' +\
-        route_name + '(request):\n    ' + 'return {}\n\n'
+
+    return '@view_config(route_name="' + route_name + "'" + renderer + \
+        permission + '")\n' + 'def ' + route_name + '(request):\n    ' +\
+        'return {}\n\n'
