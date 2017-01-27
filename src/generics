@@ -43,6 +43,7 @@ $$-$$
 
 $$check-credentials$$
 def check_credentials(request, username, password):
+    """Check login credentials."""
     is_auth = False
     try:
         query = request.dbsession.query(Users)
@@ -85,7 +86,7 @@ $$-$$
 
 $$includeme-auth$$
 def includeme(config):
-    """Security Configuration."""
+    """Security configuration."""
     auth_secret = os.environ.get('AUTH_SECRET', '')
     authn_policy = AuthTktAuthenticationPolicy(
         secret=auth_secret,
