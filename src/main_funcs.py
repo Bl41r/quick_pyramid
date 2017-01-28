@@ -36,16 +36,10 @@ def replace_placeholder(body_text, **kwargs):
     return body_text
 
 
-def create_venv(folder_name='ENV'):
-    """Create and update a virtual environment."""
-    p = subprocess.Popen(['python3', '-m', 'venv', folder_name])
-    subprocess.Popen.wait(p)
-    p = subprocess.Popen(['pip', 'install', '-U', 'pip', 'setuptools'])
-    subprocess.Popen.wait(p)
-
-
 def run_pyramid_scaffold(appname, sqlalchemy=True):
     """Create normal pyramid scaffold."""
+    p = subprocess.Popen(['pip', 'install', '-U', 'pip', 'setuptools'])
+    subprocess.Popen.wait(p)
     p = subprocess.Popen(['pip', 'install', 'pyramid', 'pyramid_ipython'])
     subprocess.Popen.wait(p)
 
@@ -67,3 +61,6 @@ def create_generic_route(route_name, renderer=None, permission=None):
 
 if __name__ == '__main__':
     run_pyramid_scaffold('testapp1')
+    p = subprocess.Popen(['rm', '-rf', 'testapp1'])
+    subprocess.Popen.wait(p)
+    print('Sorry for even more convenience.')
