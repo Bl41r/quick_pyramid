@@ -36,7 +36,7 @@ def test_route(request):
 """
 
 
-def test_replace_placeholders1():
+def test_replace_placeholders():
     """Test the replace_placeholders function replaces all keywords."""
     from main_funcs import replace_placeholders
     assert replace_placeholders(
@@ -45,7 +45,7 @@ def test_replace_placeholders1():
         PERMISSION='test') == TEST_GENERICS_REPLACED1
 
 
-def test_replace_placeholders2():
+def test_replace_placeholders_some_empty():
     """Test the replace_placeholders function replaces all keywords."""
     from main_funcs import replace_placeholders
     assert replace_placeholders(
