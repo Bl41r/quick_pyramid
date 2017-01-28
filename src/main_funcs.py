@@ -4,6 +4,7 @@
 import os
 import subprocess
 import re
+import sys
 
 
 def create_directories(directory_names):
@@ -60,6 +61,10 @@ def create_generic_route(route_name, renderer=None, permission=None):
 
 
 if __name__ == '__main__':
+    if sys.prefix == sys.base_prefix:
+        print('Please activate a virtual environment.')
+        sys.exit(1)
+
     run_pyramid_scaffold('testapp1')
     print('--Sorry for even more convenience.')
 
