@@ -14,7 +14,7 @@ def create_directories(directory_names):
 
 
 def grab_section_text(section_name, filename):
-    """Return the text from a section.
+    """Return the text from a section in a file.
 
     Sections are marked begining with $$section_name$$ and ending with
     $$-$$.  This function returns all text in-between these markers.
@@ -29,7 +29,7 @@ def grab_section_text(section_name, filename):
     ).group(1)
 
 
-def replace_placeholder(body_text, **kwargs):
+def replace_placeholders(body_text, **kwargs):
     """Replace keywords in text marked like [KEYWORD]."""
     for key, value in kwargs.items():
         body_text = re.sub('\[' + key + ']', value, body_text, 0, re.DOTALL)
@@ -61,6 +61,8 @@ def create_generic_route(route_name, renderer=None, permission=None):
 
 if __name__ == '__main__':
     run_pyramid_scaffold('testapp1')
+    print('--Sorry for even more convenience.')
+
+    # cleanup for testing
     p = subprocess.Popen(['rm', '-rf', 'testapp1'])
     subprocess.Popen.wait(p)
-    print('Sorry for even more convenience.')
