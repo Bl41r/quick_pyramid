@@ -38,18 +38,27 @@ def replace_placeholder(body_text, **kwargs):
 
 def run_pyramid_scaffold(appname, sqlalchemy=True):
     """Create normal pyramid scaffold."""
-    subprocess.Popen(['pip', 'install', '-U', 'pip', 'setuptools'])
-    subprocess.Popen(['pip', 'install', 'pyramid', 'pyramid_ipython'])
+    p = subprocess.Popen(['pip', 'install', '-U', 'pip', 'setuptools'])
+    subprocess.Popen.wait(p)
+    p = subprocess.Popen(['pip', 'install', 'pyramid', 'pyramid_ipython'])
+    subprocess.Popen.wait(p)
 
     if sqlalchemy:
-        subprocess.Popen(['pip', 'install', 'sqlalchemy'])
+        p = subprocess.Popen(['pip', 'install', 'sqlalchemy'])
+        subprocess.Popen.wait(p)
         alchemy = 'alchemy'
     else:
         alchemy = ''
 
-    subprocess.Popen(['pcreate', '-s', alchemy, appname])
+    p = subprocess.Popen(['pcreate', '-s', alchemy, appname])
+    subprocess.Popen.wait(p)
+    return
 
 
 def create_generic_route(route_name, renderer=None, permission=None):
     """Return text for a generic route."""
     pass
+
+
+if __name__ == '__main__':
+    run_pyramid_scaffold('testapp1')
