@@ -21,9 +21,19 @@ def grab_section_text(section_name, filename):
     """
     with open(filename, 'r') as f:
         text = f.read()
-    
-    x = re.match('\$\$generic-route\$\$\\n(.+?)(?=\$\$-\$\$)', text, re.DOTALL)
-    return x.group(1)
+
+    return re.match(
+        '\$\$generic-route\$\$\\n(.+?)(?=\$\$-\$\$)',
+        text,
+        re.DOTALL
+    ).group(1)
+
+
+def replace_placeholder(body_text, **kwargs):
+    """Replace keywords in text marked like [KEYWORD]."""
+    for key, value in kwargs.items():
+        body_text = re.sub('\[' + key + ']', value, body_text, 0, re.DOTALL)
+    return body_text
 
 
 def run_pyramid_scaffold(appname, sqlalchemy=True):
@@ -41,5 +51,5 @@ def run_pyramid_scaffold(appname, sqlalchemy=True):
 
 
 def create_generic_route(route_name, renderer=None, permission=None):
-    """Return text for a route."""
+    """Return text for a generic route."""
     pass
