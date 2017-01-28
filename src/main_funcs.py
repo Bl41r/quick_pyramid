@@ -65,9 +65,9 @@ if __name__ == '__main__':
         print('Please activate a virtual environment.')
         sys.exit(1)
 
-    run_pyramid_scaffold('testapp1')
-    print('--Sorry for even more convenience.')
+    # run_pyramid_scaffold('testapp1')
+    # print('--Sorry for even more convenience.')
 
-    # cleanup for testing
-    p = subprocess.Popen(['rm', '-rf', 'testapp1'])
-    subprocess.Popen.wait(p)
+    # # cleanup for testing
+    # p = subprocess.Popen(['rm', '-rf', 'testapp1'])
+    # subprocess.Popen.wait(p)
