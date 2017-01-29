@@ -15,6 +15,7 @@ automation tool.
 - Testing (unit and functional, including setting up db_session, etc..)
 - Database selection with sqlalchemy (sqlite or Postgres...)
 - Creation of models
+- GUI for this tool
 
 
 ## How to use (This section will be added to as project advances)

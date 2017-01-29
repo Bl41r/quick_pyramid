@@ -57,7 +57,16 @@ def run_pyramid_scaffold(appname, sqlalchemy=True):
 
 def create_generic_route(route_name, renderer=None, permission=None):
     """Return text for a generic route."""
-    pass
+    if not renderer:
+        renderer = ''
+    if not permission:
+        permission = ''
+
+    return replace_placeholders(
+        grab_section_text('generic_route', 'generics'),
+        ROUTE_NAME=route_name,
+        TEMPLATE=renderer,
+        PERMISSION=permission)
 
 
 if __name__ == '__main__':
