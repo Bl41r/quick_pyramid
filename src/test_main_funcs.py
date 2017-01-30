@@ -74,4 +74,4 @@ def test_grab_section_text():
     """Test section text is grabbed correctly."""
     from main_funcs import grab_section_text
     expected = '@view_config(route_name=\'[ROUTE_NAME]\', renderer=\'[TEMPLATE]\',\n             permission=\'[PERMISSION]\')\ndef [ROUTE_NAME](request):\n    """Route for [ROUTE_NAME]."""\n\n    return {}\n'
-    assert expected == grab_section_text('generic_route', 'generics')
+    assert expected == grab_section_text('generic-route', 'generics')

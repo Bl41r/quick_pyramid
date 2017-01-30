@@ -24,7 +24,7 @@ def grab_section_text(section_name, filename):
         text = f.read()
 
     return re.match(
-        '\$\$generic-route\$\$\\n(.+?)(?=\$\$-\$\$)',
+        '\$\$' + section_name + '\$\$\\n(.+?)(?=\$\$-\$\$)',
         text,
         re.DOTALL
     ).group(1)
@@ -55,13 +55,8 @@ def run_pyramid_scaffold(appname, sqlalchemy=True):
     subprocess.Popen.wait(p)
 
 
-def create_generic_route(route_name, renderer=None, permission=None):
+def create_generic_route_code(route_name, renderer='', permission=''):
     """Return text for a generic route."""
-    if not renderer:
-        renderer = ''
-    if not permission:
-        permission = ''
-
     return replace_placeholders(
         grab_section_text('generic_route', 'generics'),
         ROUTE_NAME=route_name,
